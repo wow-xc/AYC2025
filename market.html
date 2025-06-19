@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReWear - Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .category-dropdown:hover .category-menu { display: block; }
+        .category-dropdown:focus-within .category-menu { display: block; }
+        .gradient-bg { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);}
+        .item-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);}
+        .nav-link:hover { color: #4f46e5;}
+        .active-category { color: #4f46e5; font-weight: 600; background-color: #eef2ff; border-radius: 9999px;}
+        .no-results { grid-column: 1 / -1; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-tshirt text-indigo-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-indigo-600">ReWear</span>
+                    </a>
+                    <!-- Primary Nav -->
+                    <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
+                        <!-- Marketplace Dropdown -->
+                        <div class="category-dropdown relative">
+                            <button class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium hover:border-indigo-500">
+                                Marketplace
+                                <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div class="category-menu absolute left-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-10">
+                                <div class="py-1 grid grid-cols-2 gap-2 p-3">
+                                    <a href="market.html?category=T-Shirts" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-tshirt mr-2 text-indigo-400"></i> T-Shirts
+                                    </a>
+                                    <a href="market.html?category=Shirts/Blouses" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-shirt mr-2 text-purple-400"></i> Shirts<br>Blouses
+                                    </a>
+                                    <a href="market.html?category=Knit/Sweater" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-snowflake mr-2 text-blue-400"></i> Knit<br>Sweater
+                                    </a>
+                                    <a href="market.html?category=Outerwear/Jacket" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-user-tie mr-2 text-green-400"></i> Outerwear<br>Jacket
+                                    </a>
+                                    <a href="market.html?category=Pants/Denim" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-user-astronaut mr-2 text-yellow-400"></i> Pants<br>Denim
+                                    </a>
+                                    <a href="market.html?category=Skirts/Dresses" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-female mr-2 text-red-400"></i> Skirts<br>Dresses
+                                    </a>
+                                    <a href="market.html?category=Underwear/Socks" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-socks mr-2 text-pink-400"></i> Underwear<br>Socks
+                                    </a>
+                                    <a href="market.html?category=Accessories" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-hat-cowboy mr-2 text-gray-400"></i> Accessories
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="sell.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Sell
+                        </a>
+                        <a href="chat.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Chat
+                        </a>
+                        <a href="tryon.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Virtual Try On
+                        </a>
+                    </div>
+                </div>
+                <!-- Right Nav -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center" id="nav-auth-buttons">
+                    <button class="text-gray-700 px-3 py-1 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50">
+                        <a href="login.html">Login</a>
+                    </button>
+                    <button class="ml-3 bg-indigo-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-indigo-700">
+                        <a href="register.html">Sign Up</a>
+                    </button>
+                </div>
+                <!-- After login: My Page/Logout -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center" id="nav-user-buttons" style="display:none;">
+                    <button class="bg-indigo-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-indigo-700">
+                        <a href="mypage.html">My Page</a>
+                    </button>
+                    <button id="logout-btn" class="ml-3 text-gray-700 px-3 py-1 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50">
+                        Logout
+                    </button>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 bg-indigo-50">Marketplace</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Quality Check</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Sell</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Chat</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <div class="mt-3 space-y-1">
+                    <button class="block w-full px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Login</button>
+                    <button class="block w-full px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Product List Section -->
+    <div class="bg-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-10">
+                <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Secondhand Clothing Marketplace
+                </h1>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Practice sustainable fashion and buy quality clothes at affordable prices.
+                </p>
+                <!-- Category Filter -->
+                <div class="mt-6 flex flex-wrap justify-center gap-2" id="category-tabs">
+                    <a href="market.html" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-gray-100">All</a>
+                    <a href="?category=T-Shirts" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-gray-100 flex items-center" data-category="T-Shirts">
+                        <i class="fas fa-tshirt mr-1 text-indigo-400"></i> T-Shirts
+                    </a>
+                    <a href="?category=Shirts/Blouses" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-gray-100 flex items-center" data-category="Shirts/Blouses">
+                        <i class="fas fa-shirt mr-1 text-purple-400"></i> Shirts/Blouses
+                    </a>
+                    <a href="?category=Knit/Sweater" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-gray-100 flex items-center" data-category="Knit/Sweater">
+                        <i class="fas fa-snowflake mr-1 text-blue-400"></i> Knit/Sweater
+                    </a>
+                    <a href="?category=Outerwear/Jacket" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-gray-100 flex items-center" data-category="Outerwear/Jacket">
+                        <i class="fas fa-user-tie mr-1 text-green-400"></i> Outerwear/Jacket
+                    </a>
+                    <a href="?category=Pants/Denim" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-gray-100 flex items-center" data-category="Pants/Denim">
+                        <i class="fas fa-user-astronaut mr-1 text-yellow-400"></i> Pants/Denim
+                    </a>
+                    <a href="?category=Skirts/Dresses" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-gray-100 flex items-center" data-category="Skirts/Dresses">
+                        <i class="fas fa-female mr-1 text-red-400"></i> Skirts/Dresses
+                    </a>
+                    <a href="?category=Underwear/Socks" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-gray-100 flex items-center" data-category="Underwear/Socks">
+                        <i class="fas fa-socks mr-1 text-pink-400"></i> Underwear/Socks
+                    </a>
+                    <a href="?category=Accessories" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-gray-100 flex items-center" data-category="Accessories">
+                        <i class="fas fa-hat-cowboy mr-1 text-gray-400"></i> Accessories
+                    </a>
+                </div>
+                <!-- Search and Sort -->
+                <div class="mt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div class="relative w-full sm:w-96">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-gray-400"></i>
+                        </div>
+                        <input type="text" id="search-input" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search by name or brand">
+                    </div>
+                    <div class="flex items-center">
+                        <label for="sort-by" class="mr-2 text-sm text-gray-600">Sort by:</label>
+                        <select id="sort-by" class="mt-1 block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <option value="recent">Latest</option>
+                            <option value="price-asc">Lowest Price</option>
+                            <option value="price-desc">Highest Price</option>
+                            <option value="popular">Most Popular</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8" id="product-grid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+            <!-- No Results Message -->
+            <div class="hidden no-results p-8 text-center">
+                <i class="fas fa-exclamation-circle text-4xl text-gray-400 mb-4"></i>
+                <h3 class="text-lg font-medium text-gray-900">No products found in this category</h3>
+                <p class="mt-2 text-gray-500">Try another category.</p>
+                <a href="market.html" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                    View All Products
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Quality Info Section -->
+    <div class="bg-indigo-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-10">
+                <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">Quality Grade Guide</h2>
+                <p class="mt-4 max-w-2xl text-gray-500 mx-auto">
+                    All items are graded after inspection by ReWear's professional team.
+                </p>
+            </div>
+            <div class="mt-10">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-4">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600 font-bold mr-3">S</span>
+                            <h3 class="text-lg font-medium text-gray-900">Grade S</h3>
+                        </div>
+                        <p class="mt-4 text-gray-500">
+                            Same as new. No signs of wear.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600 font-bold mr-3">A</span>
+                            <h3 class="text-lg font-medium text-gray-900">Grade A</h3>
+                        </div>
+                        <p class="mt-4 text-gray-500">
+                            Slight signs of use. Excellent condition.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600 font-bold mr-3">B</span>
+                            <h3 class="text-lg font-medium text-gray-900">Grade B</h3>
+                        </div>
+                        <p class="mt-4 text-gray-500">
+                            Normal use. Minor stains or wear.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <span class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600 font-bold mr-3">C</span>
+                            <h3 class="text-lg font-medium text-gray-900">Grade C</h3>
+                        </div>
+                        <p class="mt-4 text-gray-500">
+                            Clear signs of use. Noticeable flaws.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Marketplace</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">T-Shirts</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Shirts/Blouses</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Knit/Sweater</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Outerwear/Jacket</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Service</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Quality Check</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Sell</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Chat</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Customer Support</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Notice</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Shipping/Refund</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Brand Guide</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-gray-400 hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2023 ReWear. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.sm\\:hidden button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if(isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('block');
+                } else {
+                    mobileMenu.classList.remove('block');
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    });
+    </script>
+    <script type="module">
+    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { auth, signOut, onAuthStateChanged } from "./js/firebase.js";
+
+    // Navbar login toggle
+    const navAuth = document.getElementById("nav-auth-buttons");
+    const navUser = document.getElementById("nav-user-buttons");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            if (navAuth) navAuth.style.display = "none";
+            if (navUser) navUser.style.display = "flex";
+        } else {
+            if (navUser) navUser.style.display = "none";
+            if (navAuth) navAuth.style.display = "flex";
+        }
+    });
+    if (logoutBtn) {
+        logoutBtn.onclick = async () => {
+            await signOut(auth);
+            window.location.href = "index.html";
+        };
+    }
+
+    const db = getFirestore();
+    const urlParams = new URLSearchParams(window.location.search);
+    let categoryParam = urlParams.get('category');
+    let allProducts = [];
+
+    // 유저 국가정보 fetch
+    async function getUserCountry() {
+        return new Promise((resolve) => {
+            onAuthStateChanged(auth, async (user) => {
+                if (!user) {
+                    resolve(null);
+                    return;
+                }
+                try {
+                    const userDoc = await getDocs(collection(db, "users"));
+                    const targetDoc = Array.from(userDoc.docs).find(d => d.id === user.uid);
+                    if (targetDoc) {
+                        resolve(targetDoc.data().country || null);
+                        return;
+                    }
+                } catch {}
+                resolve(null);
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', async function() {
+        // 로그인 유저의 국가
+        const userCountry = await getUserCountry();
+
+        // Category tab highlight
+        if (categoryParam) {
+            const categoryTabs = document.querySelectorAll('#category-tabs a');
+            categoryTabs.forEach(tab => {
+                if (tab.textContent.includes(categoryParam)) {
+                    tab.classList.add('active-category');
+                    tab.classList.remove('hover:bg-gray-100');
+                }
+            });
+            document.title = `ReWear - ${categoryParam} Marketplace`;
+        }
+        // 전체 상품 fetch
+        allProducts = await fetchProducts(userCountry);
+
+        let filteredProducts = filterByCategory(allProducts, categoryParam);
+        displayProducts(filteredProducts);
+
+        // Search
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                let searchFiltered = filterByCategory(allProducts, categoryParam);
+                if (searchTerm) {
+                    searchFiltered = searchFiltered.filter(product =>
+                        (product.title || "").toLowerCase().includes(searchTerm) ||
+                        (product.brand || "").toLowerCase().includes(searchTerm) ||
+                        (product.description || "").toLowerCase().includes(searchTerm)
+                    );
+                }
+                displayProducts(searchFiltered);
+            });
+        }
+        // Sort
+        const sortSelect = document.getElementById('sort-by');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function(e) {
+                let sorted = filterByCategory(allProducts, categoryParam);
+                const sortValue = e.target.value;
+                switch (sortValue) {
+                    case 'recent':
+                        sorted.sort((a, b) => b.createdAt - a.createdAt);
+                        break;
+                    case 'price-asc':
+                        sorted.sort((a, b) => a.price - b.price);
+                        break;
+                    case 'price-desc':
+                        sorted.sort((a, b) => b.price - a.price);
+                        break;
+                    // 'popular' not implemented yet
+                }
+                displayProducts(sorted);
+            });
+        }
+    });
+
+    // Firestore 상품 fetch (country 필터 포함)
+    async function fetchProducts(userCountry) {
+        const productsCol = collection(db, "products");
+        const snapshot = await getDocs(productsCol);
+        const list = [];
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            // country 필터
+            if (userCountry && data.country && data.country !== userCountry) {
+                return; // skip 다른 국가 상품
+            }
+            data.createdAt = data.createdAt?.toDate ? data.createdAt.toDate() : new Date();
+            data.id = doc.id;
+            list.push(data);
+        });
+        return list;
+    }
+    // Category filter
+    function filterByCategory(products, category) {
+        if (!category) return [...products];
+        return products.filter(product => product.category === category);
+    }
+    // Display product grid
+    function displayProducts(productsToDisplay) {
+        const productGrid = document.getElementById('product-grid');
+        const noResults = document.querySelector('.no-results');
+        productGrid.innerHTML = '';
+        if (productsToDisplay.length === 0) {
+            if (noResults) noResults.classList.remove('hidden');
+            return;
+        } else {
+            if (noResults) noResults.classList.add('hidden');
+        }
+        productsToDisplay.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.className = 'group relative bg-white p-4 rounded-lg shadow-sm item-card transition duration-300';
+            let thumbHtml = "";
+            if (product.images && product.images.length > 0) {
+                thumbHtml = `<img src="${product.images[0]}" class="w-full h-64 object-cover rounded-lg bg-gray-100" alt="Product image">`;
+            } else {
+                thumbHtml = `<div class="rounded-lg bg-gray-200 h-64 w-full flex items-center justify-center">
+                    <i class="fas fa-tshirt text-6xl text-gray-400"></i>
+                </div>`;
+            }
+            const formattedPrice = (product.price ?? 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            productCard.innerHTML = `
+                <div class="w-full aspect-w-3 aspect-h-4 rounded-lg overflow-hidden group-hover:opacity-75">
+                    ${thumbHtml}
+                </div>
+                <div class="mt-4 flex justify-between">
+                    <div>
+                        <h3 class="text-sm text-gray-700">
+                            <a href="product.html?id=${product.id}" class="hover:text-indigo-600">
+                            <span aria-hidden="true" class="absolute inset-0"></span>
+                            ${product.title || "No title"}
+                            </a>
+                        </h3>
+                        <p class="mt-1 text-xs text-gray-500 flex items-center">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 mr-2">
+                                ${product.brand || "-"}
+                            </span>
+                            <span class="text-gray-600">${product.condition || ""}</span>
+                        </p>
+                    </div>
+                    <p class="text-sm font-medium text-gray-900">${formattedPrice}₩</p>
+                </div>
+                <div class="flex justify-between items-center mt-2">
+                    <span class="text-xs text-gray-400">${product.createdAt ? product.createdAt.toLocaleDateString() : ""}</span>
+                </div>
+            `;
+            productGrid.appendChild(productCard);
+        });
+    }
+    </script>
+
+</body>
+</html>

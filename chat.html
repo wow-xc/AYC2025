@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReWear - Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        .category-dropdown:hover .category-menu {
+            display: block;
+        }
+
+        .category-dropdown:focus-within .category-menu {
+            display: block;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link:hover {
+            color: #4f46e5;
+        }
+        
+        /* Chat specific styles */
+        .chat-container {
+            height: calc(100vh - 200px);
+        }
+        
+        .message-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+        }
+        
+        .chat-bubble {
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+        
+        .chat-bubble.sent {
+            background-color: #6366f1;
+            color: white;
+            border-radius: 18px 18px 0 18px;
+        }
+        
+        .chat-bubble.received {
+            background-color: #f3f4f6;
+            color: #111827;
+            border-radius: 18px 18px 18px 0;
+        }
+        
+        .chat-list-item:hover {
+            background-color: #f9fafb;
+        }
+        
+        .chat-list-item.active {
+            background-color: #eef2ff;
+            border-left: 4px solid #6366f1;
+        }
+        
+        .unread-badge {
+            background-color: #ef4444;
+            color: white;
+        }
+        #messages-container {
+            max-height: 500px;  /* 원하는 높이(px)로 고정 (예시) */
+            min-height: 200px;  /* 필요시 최소 높이 */
+            overflow-y: auto;   /* 세로 스크롤 활성화 */
+        }
+
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-tshirt text-indigo-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-indigo-600">ReWear</span>
+                    </a>
+                    
+                    <!-- Primary Nav -->
+                    <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
+                        <!-- 중고거래 드롭다운 -->
+                        <div class="category-dropdown relative">
+                            <button class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                                Marketplace
+                                <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <!-- 드롭다운 메뉴 (너가 준 코드 그대로, 아이콘 추천만 바꿔줌) -->
+                            <div class="category-menu absolute left-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-10">
+                            <div class="py-1 grid grid-cols-2 gap-2 p-3">
+                                <a href="market.html?category=T-Shirts" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-tshirt mr-2 text-indigo-400"></i> T-Shirts
+                                </a>
+                                <a href="market.html?category=Shirts/Blouses" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-shirt mr-2 text-purple-400"></i> Shirts<br>Blouses
+                                </a>
+                                <a href="market.html?category=Knit/Sweater" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-snowflake mr-2 text-blue-400"></i> Knit<br>Sweater
+                                </a>
+                                <a href="market.html?category=Outerwear/Jacket" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-user-tie mr-2 text-green-400"></i> Outerwear<br>Jacket
+                                </a>
+                                <a href="market.html?category=Pants/Denim" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-user-astronaut mr-2 text-yellow-400"></i> Pants<br>Denim
+                                </a>
+                                <a href="market.html?category=Skirts/Dresses" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-female mr-2 text-red-400"></i> Skirts<br>Dresses
+                                </a>
+                                <a href="market.html?category=Underwear/Socks" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-socks mr-2 text-pink-400"></i> Underwear<br>Socks
+                                </a>
+                                <a href="market.html?category=Accessories" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-hat-cowboy mr-2 text-gray-400"></i> Accessories
+                                </a>
+                            </div>
+                            </div>
+                        </div>
+                        <a href="sell.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Sell
+                        </a>
+                        <a href="chat.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium hover:border-indigo-500">
+                            Chat
+                        </a>
+                        <a href="tryon.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Virtual Try On
+                        </a>
+                    </div>
+                </div>
+                                        
+                <!-- Right Nav -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center" id="nav-auth-buttons">
+                    <button class="text-gray-700 px-3 py-1 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50">
+                        <a href="login.html">Login</a>
+                    </button>
+                    <button class="ml-3 bg-indigo-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-indigo-700">
+                        <a href="register.html">Sign Up</a>
+                    </button>
+                </div>
+
+                <!-- 추가: 로그인 후 표시될 내 정보/로그아웃 버튼 -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center" id="nav-user-buttons" style="display:none;">
+                    <button class="bg-indigo-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-indigo-700">
+                        <a href="mypage.html">My Page</a>
+                    </button>
+                    <button id="logout-btn" class="ml-3 text-gray-700 px-3 py-1 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50">
+                        Logout
+                    </button>
+                </div>
+                                        
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+                        
+        <!-- Mobile menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Marketplace</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Quality Check</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Sell</a>
+                <a href="chat.html" class="block pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 bg-indigo-50">Chat</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <div class="mt-3 space-y-1">
+                    <button class="block w-full px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Login</button>
+                    <button class="block w-full px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Chat Page Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Chat List Sidebar -->
+            <div class="w-full md:w-1/3 bg-white rounded-lg shadow-sm overflow-hidden">
+                <div class="p-4 border-b border-gray-200">
+                    <h2 class="text-xl font-semibold text-gray-800">Messages</h2>
+                    <div class="mt-2 relative">
+                        <input type="text" placeholder="Search conversations..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <div class="overflow-y-auto" style="max-height: 600px;" id="chat-list">
+                </div>
+            </div>
+            
+            <!-- Chat Area -->
+            <div class="w-full md:w-2/3 bg-white rounded-lg shadow-sm overflow-hidden flex flex-col">
+                <!-- Chat Header -->
+                <div class="p-4 border-b border-gray-200 flex items-center">
+                    <div class="flex-shrink-0">
+                        <img id="partner-img" src="" alt="User" class="h-10 w-10 rounded-full">
+                    </div>
+                    <div class="ml-3">
+                        <h3 id="partner-name" class="text-lg font-medium text-gray-900">Loading</h3>
+                    </div>
+                    <div class="ml-auto flex space-x-2">
+                        <button class="p-2 text-gray-500 hover:text-indigo-600 hover:bg-gray-100 rounded-full">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                        <button class="p-2 text-gray-500 hover:text-indigo-600 hover:bg-gray-100 rounded-full">
+                            <i class="fas fa-video"></i>
+                        </button>
+                        <button class="p-2 text-gray-500 hover:text-indigo-600 hover:bg-gray-100 rounded-full">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Messages Area -->
+                <div class="flex-1 p-4 overflow-y-auto chat-container" id="messages-container">
+                    
+                </div>
+                
+                <!-- Message Input -->
+                <div class="p-4 border-t border-gray-200">
+                    <div class="flex items-center">
+                        <button class="p-2 text-gray-500 hover:text-indigo-600 rounded-full">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <button class="p-2 text-gray-500 hover:text-indigo-600 rounded-full">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                        <input type="text" placeholder="Type a message..." class="message-input flex-1 mx-2 px-4 py-2 border border-gray-300 rounded-full focus:ring-indigo-500 focus:border-indigo-500">
+                        <button class="p-2 text-white bg-indigo-600 rounded-full hover:bg-indigo-700">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Marketplace</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">T-Shirts</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Shirts/Blouses</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Knit/Sweater</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Outerwear/Jacket</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Service</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Quality Check</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Sell</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Chat</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Announcements</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Shipping/Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Brand Guide</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2023 ReWear. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.sm\\:hidden button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if(isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('block');
+                } else {
+                    mobileMenu.classList.remove('block');
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+            // Chat list item click handler
+            const chatItems = document.querySelectorAll('.chat-list-item');
+            chatItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    chatItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+    <script type="module">
+    import { getFirestore, collection, query, orderBy, onSnapshot, addDoc, serverTimestamp, doc, getDoc, where, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { auth, signOut, onAuthStateChanged } from "./js/firebase.js";
+
+    const db = getFirestore();
+    let currentUser = null;
+    let currentChatId = new URLSearchParams(window.location.search).get("chatId");
+
+    // 네비바 토글
+    const navAuth = document.getElementById("nav-auth-buttons");
+    const navUser = document.getElementById("nav-user-buttons");
+    const logoutBtn = document.getElementById("logout-btn");
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+            alert("Login required.");
+            window.location.href = "login.html";
+            return;
+        }
+        currentUser = user;
+        navAuth && (navAuth.style.display = "none");
+        navUser && (navUser.style.display = "flex");
+        renderChatList();
+        if (currentChatId) openChatRoom(currentChatId);
+    });
+    if (logoutBtn) {
+        logoutBtn.onclick = async () => {
+            await signOut(auth);
+            window.location.href = "index.html";
+        };
+    }
+
+    // ===== 채팅 리스트 =====
+    async function renderChatList() {
+        const chatListDiv = document.getElementById("chat-list");
+        chatListDiv.innerHTML = '';
+        const chatsRef = collection(db, "chats");
+        // **핵심: array-contains로 변경**
+        const q = query(chatsRef, where("participants", "array-contains", currentUser.uid), orderBy("lastTimestamp", "desc"));
+        onSnapshot(q, async (snap) => {
+            chatListDiv.innerHTML = '';
+            if (snap.empty) {
+                chatListDiv.innerHTML = `<div class="p-4 text-gray-400 text-center">No conversations yet.</div>`;
+                return;
+            }
+            snap.forEach(async (docSnap) => {
+                const data = docSnap.data();
+                // **배열 구조 기준으로 파트너 찾기**
+                const partnerId = (data.participants || []).find(uid => uid !== currentUser.uid);
+                let partnerName = "Unknown", partnerImg = "https://ui-avatars.com/api/?name=U";
+                const partnerDoc = await getDoc(doc(db, "users", partnerId));
+                if (partnerDoc.exists()) {
+                    partnerName = partnerDoc.data().name || partnerDoc.data().nickname || "Unknown";
+                    partnerImg = partnerDoc.data().photoURL || `https://ui-avatars.com/api/?name=${partnerName}`;
+                }
+                const lastMsg = data.lastMessage || "";
+                let lastTime = "";
+                if (data.lastTimestamp && data.lastTimestamp.toDate) {
+                    lastTime = data.lastTimestamp.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                }
+                const item = document.createElement('div');
+                item.className = `chat-list-item p-4 border-b border-gray-100 cursor-pointer flex items-center${docSnap.id === currentChatId ? ' active' : ''}`;
+                item.innerHTML = `
+                    <div class="flex-shrink-0 relative">
+                        <img src="${partnerImg}" alt="User" class="h-10 w-10 rounded-full">
+                    </div>
+                    <div class="ml-3 flex-1">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm font-medium text-gray-900">${partnerName}</h3>
+                            <span class="text-xs text-gray-500">${lastTime}</span>
+                        </div>
+                        <p class="text-sm text-gray-500 truncate">${lastMsg}</p>
+                    </div>
+                `;
+                item.onclick = () => {
+                    window.location.href = `chat.html?chatId=${docSnap.id}`;
+                };
+                chatListDiv.appendChild(item);
+            });
+        });
+    }
+
+    // ===== 메시지/상단 =====
+    function openChatRoom(chatId) {
+        currentChatId = chatId;
+        const messagesContainer = document.getElementById("messages-container");
+        messagesContainer.innerHTML = '';
+        const messagesRef = collection(db, "chats", chatId, "messages");
+        const chatDocRef = doc(db, "chats", chatId);
+
+        // 채팅방 상단 상대 정보 표시
+        getDoc(chatDocRef).then(async (chatDoc) => {
+            if (!chatDoc.exists()) return;
+            const data = chatDoc.data();
+            // **배열 구조 기준으로 파트너 찾기**
+            const partnerId = (data.participants || []).find(uid => uid !== currentUser.uid);
+            const partnerDoc = await getDoc(doc(db, "users", partnerId));
+            let partnerName = "Unknown", partnerImg = "https://ui-avatars.com/api/?name=U", partnerStatus = "Active now";
+            if (partnerDoc.exists()) {
+                partnerName = partnerDoc.data().name || partnerDoc.data().nickname || "Unknown";
+                partnerImg = partnerDoc.data().photoURL || `https://ui-avatars.com/api/?name=${partnerName}`;
+            }
+            // 채팅 상단 이름/사진/상태 갱신
+            document.getElementById("partner-img").src = partnerImg;
+            document.getElementById("partner-name").textContent = partnerName;
+            document.querySelector(".p-4.border-b p.text-sm").textContent = partnerStatus;
+        });
+
+        // 메시지 실시간 표시
+        const q = query(messagesRef, orderBy("timestamp"));
+        onSnapshot(q, (snap) => {
+            messagesContainer.innerHTML = '';
+            let lastDate = "";
+            snap.forEach(docSnap => {
+                const msg = docSnap.data();
+                let msgDate = msg.timestamp?.toDate ? msg.timestamp.toDate().toLocaleDateString() : "";
+                if (msgDate && msgDate !== lastDate) {
+                    messagesContainer.innerHTML += `
+                    <div class="flex items-center justify-center">
+                        <span class="px-2 py-1 text-xs font-medium text-gray-500 bg-gray-100 rounded-full">${msgDate}</span>
+                    </div>`;
+                    lastDate = msgDate;
+                }
+                const isMine = msg.sender === currentUser.uid;
+                messagesContainer.innerHTML += `
+                    <div class="flex ${isMine ? 'items-start justify-end' : 'items-start'} mb-2">
+                        ${!isMine ? `<img src="https://ui-avatars.com/api/?name=U" alt="User" class="h-8 w-8 rounded-full mr-3">` : ''}
+                        <div${isMine ? ' class="text-right"' : ''}>
+                            <div class="chat-bubble ${isMine ? 'sent' : 'received'} px-4 py-2">
+                                <p>${msg.text}</p>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">${msg.timestamp?.toDate ? msg.timestamp.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : ''}${isMine ? ' <i class="fas fa-check ml-1 text-blue-400"></i>' : ''}</p>
+                        </div>
+                    </div>`;
+            });
+            if (snap.empty) {
+                messagesContainer.innerHTML = `
+                    <div class="flex items-start mb-2">
+                        <img src="https://ui-avatars.com/api/?name=ReWearBot" alt="User" class="h-8 w-8 rounded-full mr-3">
+                        <div>
+                            <div class="chat-bubble received px-4 py-2">
+                                <p>This is the start of your conversation.<br>Say hi 👋</p>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Now</p>
+                        </div>
+                    </div>`;
+            }
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        });
+    }
+
+    // ===== 메시지 전송 =====
+    const messageInput = document.querySelector(".message-input");
+    const sendBtn = document.querySelector(".bg-indigo-600.rounded-full");
+
+    async function sendMessage() {
+        if (!currentChatId) return;
+        const text = messageInput.value.trim();
+        if (!text || !currentUser) return;
+        const messagesRef = collection(db, "chats", currentChatId, "messages");
+        await addDoc(messagesRef, {
+            text,
+            sender: currentUser.uid,
+            timestamp: serverTimestamp()
+        });
+        // 채팅방 문서의 lastMessage, lastTimestamp 갱신
+        await updateDoc(doc(db, "chats", currentChatId), {
+            lastMessage: text,
+            lastTimestamp: serverTimestamp()
+        });
+        messageInput.value = "";
+        messageInput.focus();
+    }
+
+    sendBtn.addEventListener("click", sendMessage);
+    messageInput.addEventListener("keydown", e => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+    </script>
+
+
+
+
+
+</body>
+</html>

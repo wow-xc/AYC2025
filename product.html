@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReWear - Product Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .product-image { transition: all 0.3s ease; }
+        .product-image:hover { transform: scale(1.03); }
+        .grade-S { background-color: rgba(16, 185, 129, 0.1); color: #10B981; }
+        .grade-A { background-color: rgba(59, 130, 246, 0.1); color: #3B82F6; }
+        .grade-B { background-color: rgba(234, 179, 8, 0.1); color: #EAB308; }
+        .grade-C { background-color: rgba(239, 68, 68, 0.1); color: #EF4444; }
+        .tab-button.active { border-bottom: 3px solid #4F46E5; color: #4F46E5; font-weight: 600; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-tshirt text-indigo-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-indigo-600">ReWear</span>
+                    </a>
+                    <!-- Primary Nav -->
+                    <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
+                        <!-- Marketplace Dropdown -->
+                        <div class="category-dropdown relative">
+                            <button class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium hover:border-indigo-500">
+                                Marketplace
+                                <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div class="category-menu absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-10">
+                                <div class="py-1 grid grid-cols-2 gap-2 p-3">
+                                    <a href="market.html?category=T-Shirts" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-tshirt mr-2 text-indigo-400"></i> T-Shirts
+                                    </a>
+                                    <a href="market.html?category=Shirts/Blouses" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-vest mr-2 text-purple-400"></i> Shirts/Blouses
+                                    </a>
+                                    <a href="market.html?category=Knit/Sweater" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-vest-patches mr-2 text-blue-400"></i> Knit/Sweater
+                                    </a>
+                                    <a href="market.html?category=Outerwear/Jacket" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-jacket mr-2 text-green-400"></i> Outerwear/Jacket
+                                    </a>
+                                    <a href="market.html?category=Pants/Denim" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-pants mr-2 text-yellow-400"></i> Pants/Denim
+                                    </a>
+                                    <a href="market.html?category=Skirts/Dresses" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-skirt mr-2 text-red-400"></i> Skirts/Dresses
+                                    </a>
+                                    <a href="market.html?category=Underwear/Socks" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-socks mr-2 text-pink-400"></i> Underwear/Socks
+                                    </a>
+                                    <a href="market.html?category=Accessories" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                        <i class="fas fa-hat-cowboy mr-2 text-gray-400"></i> Accessories
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="sell.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Sell
+                        </a>
+                        <a href="chat.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Chat
+                        </a>
+                        <a href="tryon.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Virtual Try On
+                        </a>
+                    </div>
+                </div>
+                <!-- Right Nav -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center" id="nav-auth-buttons">
+                    <button class="text-gray-700 px-3 py-1 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50">
+                        <a href="login.html">Login</a>
+                    </button>
+                    <button class="ml-3 bg-indigo-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-indigo-700">
+                        <a href="register.html">Sign Up</a>
+                    </button>
+                </div>
+                <!-- User Nav -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center" id="nav-user-buttons" style="display:none;">
+                    <button class="bg-indigo-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-indigo-700">
+                        <a href="mypage.html">My Page</a>
+                    </button>
+                    <button id="logout-btn" class="ml-3 text-gray-700 px-3 py-1 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50">
+                        Logout
+                    </button>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 bg-indigo-50">Marketplace</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Quality Check</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Sell</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Chat</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <div class="mt-3 space-y-1">
+                    <button class="block w-full px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Login</button>
+                    <button class="block w-full px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Product Detail Section -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Breadcrumbs -->
+        <div class="flex items-center text-sm text-gray-500 mb-6">
+            <a href="market.html" class="hover:text-indigo-600">Marketplace</a>
+            <svg class="h-4 w-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span id="product-category">Category</span>
+            <svg class="h-4 w-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700 font-medium" id="product-name">Product</span>
+        </div>
+        <!-- Product Detail Container -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="md:flex">
+                <!-- Product Images -->
+                <div class="md:w-1/2 p-6 md:p-8">
+                    <div class="relative h-96 w-full mb-4 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
+                        <i class="fas fa-tshirt text-6xl text-gray-300" id="product-main-icon"></i>
+                    </div>
+                    <div class="flex space-x-3 overflow-x-auto scrollbar-hide">
+                        <!-- Thumbnails are replaced by JS -->
+                    </div>
+                </div>
+                <!-- Product Info -->
+                <div class="md:w-1/2 p-6 md:p-8">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800" id="product-brand">
+                                Brand
+                            </span>
+                            <h1 class="text-2xl font-bold text-gray-900 mt-2" id="product-title">Product Title</h1>
+                            <p class="mt-1 text-sm text-gray-500" id="product-category-label">
+                                <i class="fas fa-tag mr-1"></i> Category
+                            </p>
+                        </div>
+                        <div class="flex items-center">
+                            <button class="text-gray-400 hover:text-red-500 mr-3">
+                                <i class="far fa-heart text-xl"></i>
+                            </button>
+                            <button class="text-gray-400 hover:text-gray-600">
+                                <i class="fas fa-share-alt text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Price & Grade -->
+                    <div class="mt-6">
+                        <div class="flex items-baseline">
+                            <span class="text-3xl font-bold text-gray-900" id="product-price">0</span>
+                            <span class="ml-1 text-lg text-gray-500">KRW</span>
+                        </div>
+                        <div class="mt-3">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium" id="product-grade">
+                                S Grade
+                            </span>
+                            <span class="ml-2 text-sm text-gray-500" id="product-condition">Condition: New</span>
+                        </div>
+                    </div>
+                    <!-- Seller Info -->
+                    <div class="mt-6 border-t border-gray-200 pt-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                <i class="fas fa-user text-indigo-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-900">Seller Name</h3>
+                                <div class="flex items-center mt-1">
+                                    <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                    <span class="text-xs text-gray-500 ml-1">4.7 (23) · Manner Temperature 36.5°C</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-x-2">
+                            <button id="start-chat-btn" class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none">
+                                <i class="far fa-user mr-1"></i> Chat
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Product Actions -->
+                    <div class="mt-6 border-t border-gray-200 pt-6">
+                        <div class="flex justify-end space-x-3">
+                            <button class="px-4 py-2 border border-indigo-600 text-sm font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 focus:outline-none">
+                                Add to Cart
+                            </button>
+                            <button class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Product Detail Tabs -->
+            <div class="border-t border-gray-200">
+                <div class="flex border-b border-gray-200">
+                    <button class="tab-button active py-4 px-6 text-sm font-medium text-center border-b-2 border-transparent">
+                        Product Detail
+                    </button>
+                    <button class="tab-button py-4 px-6 text-sm font-medium text-center border-b-2 border-transparent hover:text-indigo-600">
+                        Quality Assessment
+                    </button>
+                    <button class="tab-button py-4 px-6 text-sm font-medium text-center border-b-2 border-transparent hover:text-indigo-600">
+                        Product Q&A
+                    </button>
+                </div>
+                <!-- Tab Content -->
+                <div class="p-6 md:p-8">
+                    <!-- Product Description -->
+                    <div id="description-tab">
+                        <h2 class="text-lg font-medium text-gray-900 mb-4">Description</h2>
+                        <div class="prose max-w-none text-gray-500" id="product-description">
+                            Product description goes here.
+                        </div>
+                        <div class="mt-8 space-y-6">
+                            <div>
+                                <h3 class="text-md font-medium text-gray-900 mb-2">Basic Info</h3>
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 w-1/3">Condition</td>
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900" id="product-detail-condition">New</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">Location</td>
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Gangnam-gu, Seoul</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">Delivery Method</td>
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Shipping · Face-to-face</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="p-4 bg-indigo-50 rounded-lg">
+                                <h3 class="text-md font-medium text-indigo-800 mb-2 flex items-center">
+                                    <svg class="h-5 w-5 text-indigo-600 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    Why ReWear recommends this
+                                </h3>
+                                <p class="text-sm text-gray-700">
+                                    This product is verified by our professional inspection team, meeting strict standards. It is clean, fully functional, and visually almost flawless.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button class="p-4 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <i class="fas fa-chevron-up text-xl"></i>
+        </button>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Marketplace</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">T-Shirts</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Shirts/Blouses</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Knit/Sweater</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Outerwear/Jacket</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Service</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Quality Check</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Sell</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Chat</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">1:1 Inquiry</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Notice</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Shipping/Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Brand Guide</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2023 ReWear. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+    import { setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    import { getFirestore, doc, getDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { auth, signOut, onAuthStateChanged } from "./js/firebase.js";
+
+    // Navigation bar toggle
+    const navAuth = document.getElementById("nav-auth-buttons");
+    const navUser = document.getElementById("nav-user-buttons");
+    const logoutBtn = document.getElementById("logout-btn");
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            if (navAuth) navAuth.style.display = "none";
+            if (navUser) navUser.style.display = "flex";
+        } else {
+            if (navUser) navUser.style.display = "none";
+            if (navAuth) navAuth.style.display = "flex";
+        }
+    });
+    if (logoutBtn) {
+        logoutBtn.onclick = async () => {
+            await signOut(auth);
+            window.location.href = "index.html";
+        };
+    }
+
+    // ------------------ Fetch product info from Firestore ------------------
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+    const db = getFirestore();
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        if (!productId) {
+            alert("Product not found.");
+            window.location.href = "market.html";
+            return;
+        }
+
+        // 1. Fetch product info
+        const docRef = doc(db, "products", productId);
+        const docSnap = await getDoc(docRef);
+        if (!docSnap.exists()) {
+            alert("Product not found.");
+            window.location.href = "market.html";
+            return;
+        }
+        const product = docSnap.data();
+
+        // 2. Fetch seller info (users/{sellerId})
+        let sellerName = "Seller info not found";
+        if (product.sellerId) {
+            try {
+                const userDoc = await getDoc(doc(db, "users", product.sellerId));
+                if (userDoc.exists()) {
+                    const u = userDoc.data();
+                    sellerName = u.name || u.displayName || "Anonymous";
+                }
+            } catch {}
+        }
+
+        // 3. Like state
+        let currentUser = auth.currentUser;
+        let liked = false;
+        if (currentUser && product.likedUsers && product.likedUsers[currentUser.uid]) {
+            liked = true;
+        }
+
+        // ----------- Display product info -----------
+        document.title = `ReWear - ${product.title || "Product Detail"}`;
+        document.getElementById('product-name').textContent = product.title ?? "";
+        document.getElementById('product-title').textContent = product.title ?? "";
+        document.getElementById('product-category').textContent = product.category ?? "-";
+        document.getElementById('product-category-label').innerHTML = `<i class="fas fa-tag mr-1"></i> ${product.category ?? ""}`;
+        document.getElementById('product-brand').textContent = product.brand ?? "-";
+        document.getElementById('product-price').textContent = (product.price ?? 0).toLocaleString();
+        document.getElementById('product-description').innerHTML = product.description ?? "";
+
+        // grade (product grade)
+        const gradeElement = document.getElementById('product-grade');
+        const gradeLabel = {
+            "S": "Grade S (Like New)",
+            "A": "Grade A",
+            "B": "Grade B",
+            "C": "Grade C",
+            "F": "Grade F"
+        };
+        if (product.grade) {
+            gradeElement.textContent = gradeLabel[product.grade] ?? (product.grade + " Grade");
+            gradeElement.className = "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium grade-" + product.grade;
+        } else {
+            gradeElement.textContent = "";
+            gradeElement.className = "";
+        }
+        // Condition (grade text)
+        document.getElementById('product-condition').textContent = "Condition: " + (gradeLabel[product.grade] ?? "-");
+        document.getElementById('product-detail-condition').textContent = gradeLabel[product.grade] ?? "-";
+
+        // Location
+        const locationTd = document.querySelector('td[id="product-location"], #product-location');
+        if (locationTd) locationTd.textContent = product.location ?? "-";
+        try {
+            document.querySelectorAll("td").forEach(td => {
+                if (td.textContent.includes("Region") || td.textContent.includes("거래 지역")) {
+                    td.nextElementSibling.textContent = product.location ?? "-";
+                }
+            });
+        } catch {}
+
+        // Images
+        const images = Array.isArray(product.images) ? product.images : [];
+        const mainImageContainer = document.querySelector(".h-96.w-full.mb-4");
+        if (images.length > 0) {
+            mainImageContainer.innerHTML = `<img src="${images[0]}" class="w-full h-full object-contain product-image" alt="Product Image">`;
+        } else {
+            mainImageContainer.innerHTML = `<i class="fas fa-tshirt text-6xl text-gray-300" id="product-main-icon"></i>`;
+        }
+        // Thumbnails below
+        const thumbsContainer = mainImageContainer.parentElement.querySelector(".flex.space-x-3");
+        thumbsContainer.innerHTML = "";
+        images.forEach((img, idx) => {
+            const thumb = document.createElement("div");
+            thumb.className = "flex-shrink-0 w-16 h-16 rounded-md overflow-hidden bg-gray-100 flex items-center justify-center border border-gray-200 cursor-pointer";
+            thumb.innerHTML = `<img src="${img}" class="w-full h-full object-contain" alt="Thumbnail">`;
+            thumb.onclick = () => {
+                mainImageContainer.innerHTML = `<img src="${img}" class="w-full h-full object-contain product-image" alt="Product Image">`;
+            };
+            thumbsContainer.appendChild(thumb);
+        });
+        if (images.length === 0) {
+            for (let i = 0; i < 4; i++) {
+                const thumb = document.createElement("div");
+                thumb.className = "flex-shrink-0 w-16 h-16 rounded-md overflow-hidden bg-gray-100 flex items-center justify-center border border-gray-200 cursor-pointer";
+                thumb.innerHTML = `<i class="fas fa-tshirt text-xl text-gray-400"></i>`;
+                thumbsContainer.appendChild(thumb);
+            }
+        }
+
+        // Seller name UI
+        document.querySelectorAll("h3.text-sm.font-medium.text-gray-900").forEach(el => {
+            if (el.textContent.includes("Seller")) {
+                el.textContent = sellerName;
+            }
+        });
+
+        // Like count and button
+        const likeBtn = document.querySelector('button.text-gray-400.hover\\:text-red-500');
+        const likeIcon = likeBtn.querySelector('i');
+        let likesCount = product.likesCount ?? 0;
+
+        // Like count display (add if not present)
+        let heartCountSpan = document.getElementById("product-like-count");
+        if (!heartCountSpan) {
+            heartCountSpan = document.createElement("span");
+            heartCountSpan.id = "product-like-count";
+            heartCountSpan.className = "ml-1 text-sm text-gray-500";
+            likeBtn.appendChild(heartCountSpan);
+        }
+        heartCountSpan.textContent = likesCount;
+
+        function updateHeartUI(liked) {
+            if (liked) {
+                likeIcon.className = "fas fa-heart text-red-500 text-xl";
+            } else {
+                likeIcon.className = "far fa-heart text-xl";
+            }
+        }
+        updateHeartUI(liked);
+
+        // Like button event
+        likeBtn.onclick = async () => {
+            const user = auth.currentUser;
+            if (!user) {
+                alert("Login required.");
+                window.location.href = "login.html";
+                return;
+            }
+            // Fetch again (sync)
+            const curSnap = await getDoc(docRef);
+            let curData = curSnap.data();
+            let curLikedUsers = curData.likedUsers || {};
+            let curLikesCount = curData.likesCount || 0;
+
+            if (curLikedUsers[user.uid]) {
+                // Already liked: undo
+                curLikedUsers[user.uid] = false;
+                curLikesCount = Math.max(0, curLikesCount - 1);
+                liked = false;
+            } else {
+                // Like
+                curLikedUsers[user.uid] = true;
+                curLikesCount += 1;
+                liked = true;
+            }
+            // Update Firestore
+            await updateDoc(docRef, {
+                likedUsers: curLikedUsers,
+                likesCount: curLikesCount,
+            });
+            heartCountSpan.textContent = curLikesCount;
+            updateHeartUI(liked);
+        };
+        const chatBtn = document.getElementById('start-chat-btn');
+    if (chatBtn) {
+        chatBtn.addEventListener('click', async () => {
+            const user = auth.currentUser;
+            if (!user) {
+                alert('Login required.');
+                window.location.href = 'login.html';
+                return;
+            }
+            if (!product.sellerId || user.uid === product.sellerId) {
+                alert('You cannot chat with yourself.');
+                return;
+            }
+
+            // 항상 같은 채팅방 id (buyer, seller, productId 조합. 오름차순 정렬)
+            const [uidA, uidB] = [user.uid, product.sellerId].sort();
+            const chatId = `${uidA}_${uidB}_${productId}`;
+            const chatDocRef = doc(db, "chats", chatId);
+
+            // 이미 채팅방이 있나 확인
+            const docSnap = await getDoc(chatDocRef);
+            if (!docSnap.exists()) {
+                // 채팅방 생성
+                await setDoc(chatDocRef, {
+                    participants: [user.uid, product.sellerId], // 배열로!
+                    participantNames: [
+                        user.displayName || user.email || "Unknown",
+                        sellerName || "Unknown"
+                    ],
+                    participantPhotos: [
+                        user.photoURL || "",
+                        "" // 판매자 사진URL, 만약 필요하면 Firestore에서 가져와서 넣기
+                    ],
+                    productId: productId,
+                    createdAt: serverTimestamp(),
+                    lastMessage: "",
+                    lastTimestamp: serverTimestamp()
+                });
+
+
+            }
+            // 채팅방으로 이동
+            window.location.href = `chat.html?chatId=${chatId}`;
+        });
+    }
+
+    });
+</script>
+
+
+
+</body>
+</html>

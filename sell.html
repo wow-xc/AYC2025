@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReWear - Register Product</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .category-dropdown:hover .category-menu { display: block; }
+        .category-dropdown:focus-within .category-menu { display: block; }
+        .nav-link:hover { color: #4f46e5; }
+        #previewContainer { min-height: 200px; }
+        .dropzone { border: 2px dashed #d1d5db; transition: all 0.3s ease; }
+        .dropzone-active { border-color: #4f46e5; background-color: #f0f7ff; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-tshirt text-indigo-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-indigo-600">ReWear</span>
+                    </a>
+                    
+                    <!-- Primary Nav -->
+                    <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
+                        <div class="category-dropdown relative">
+                            <button class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                                Marketplace
+                                <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div class="category-menu absolute left-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-10">
+                            <div class="py-1 grid grid-cols-2 gap-2 p-3">
+                                <a href="market.html?category=T-Shirts" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-tshirt mr-2 text-indigo-400"></i> T-Shirts
+                                </a>
+                                <a href="market.html?category=Shirts/Blouses" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-shirt mr-2 text-purple-400"></i> Shirts<br>Blouses
+                                </a>
+                                <a href="market.html?category=Knit/Sweater" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-snowflake mr-2 text-blue-400"></i> Knit<br>Sweater
+                                </a>
+                                <a href="market.html?category=Outerwear/Jacket" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-user-tie mr-2 text-green-400"></i> Outerwear<br>Jacket
+                                </a>
+                                <a href="market.html?category=Pants/Denim" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-user-astronaut mr-2 text-yellow-400"></i> Pants<br>Denim
+                                </a>
+                                <a href="market.html?category=Skirts/Dresses" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-female mr-2 text-red-400"></i> Skirts<br>Dresses
+                                </a>
+                                <a href="market.html?category=Underwear/Socks" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-socks mr-2 text-pink-400"></i> Underwear<br>Socks
+                                </a>
+                                <a href="market.html?category=Accessories" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-hat-cowboy mr-2 text-gray-400"></i> Accessories
+                                </a>
+                            </div>
+                            </div>
+
+                        </div>
+                        <a href="sell.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium hover:border-indigo-500">
+                            Sell
+                        </a>
+                        <a href="chat.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Chat
+                        </a>
+                        <a href="tryon.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Virtual Try On
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center" id="nav-auth-buttons">
+                    <button class="text-gray-700 px-3 py-1 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50">
+                        <a href="login.html">Login</a>
+                    </button>
+                    <button class="ml-3 bg-indigo-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-indigo-700">
+                        <a href="register.html">Sign Up</a>
+                    </button>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center" id="nav-user-buttons" style="display:none;">
+                    <button class="bg-indigo-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-indigo-700">
+                        <a href="mypage.html">My Page</a>
+                    </button>
+                    <button id="logout-btn" class="ml-3 text-gray-700 px-3 py-1 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50">
+                        Logout
+                    </button>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Marketplace</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Quality Check</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 bg-indigo-50">Sell</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Chat</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <div class="mt-3 space-y-1">
+                    <button class="block w-full px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Login</button>
+                    <button class="block w-full px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">
+                Register Product
+            </h1>
+            <p class="mt-3 max-w-2xl mx-auto text-gray-500 sm:mt-4">
+                Please enter the product information in detail. The more accurate the information, the faster it will be sold.
+            </p>
+        </div>
+
+        <div class="bg-white shadow rounded-lg overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h3 class="text-lg font-medium text-gray-900">
+                    Basic Information
+                </h3>
+                <p class="mt-1 text-sm text-gray-500">
+                    Enter the basic information of the product.
+                </p>
+            </div>
+            
+            <!-- Product Form -->
+            <form class="divide-y divide-gray-200" id="productForm">
+                <div class="px-6 py-6">
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-6">
+                        <!-- Product Name -->
+                        <div class="sm:col-span-6">
+                            <label for="productName" class="block text-sm font-medium text-gray-700">Product Name</label>
+                            <input type="text" name="productName" id="productName" autocomplete="off" required
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <!-- Category -->
+                        <div class="sm:col-span-3">
+                            <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                            <select id="category" name="category" required
+                                class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="" disabled selected>Select category</option>
+                                <option value="T-Shirts">T-Shirts</option>
+                                <option value="Shirts/Blouses">Shirts/Blouses</option>
+                                <option value="Knit/Sweater">Knit/Sweater</option>
+                                <option value="Outerwear/Jacket">Outerwear/Jacket</option>
+                                <option value="Pants/Denim">Pants/Denim</option>
+                                <option value="Skirts/Dresses">Skirts/Dresses</option>
+                                <option value="Underwear/Socks">Underwear/Socks</option>
+                                <option value="Accessories">Accessories</option>
+                            </select>
+                        </div>
+                        <!-- Brand -->
+                        <div class="sm:col-span-3">
+                            <label for="brand" class="block text-sm font-medium text-gray-700">Brand</label>
+                            <input type="text" name="brand" id="brand" autocomplete="off"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <!-- Price -->
+                        <div class="sm:col-span-3">
+                            <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 sm:text-sm">₩</span>
+                                </div>
+                                <input type="number" name="price" id="price" required
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2 px-3"
+                                    placeholder="0">
+                                <div class="absolute inset-y-0 right-0 flex items-center">
+                                    <label for="currency" class="sr-only">Currency</label>
+                                    <span class="text-gray-500 sm:text-sm mr-3">KRW</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Location -->
+                        <div class="sm:col-span-6">
+                            <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+                            <input type="text" name="location" id="location" autocomplete="off" required
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Images -->
+                <div class="px-6 py-6">
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-900">Product Images</h3>
+                        <p class="mt-1 text-sm text-gray-500">Upload clear photos showing the condition of the product. (Up to 10 images)</p>
+                    </div>
+                    <div class="mt-6">
+                        <div id="dropzone" class="dropzone flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="flex text-sm text-gray-600">
+                                    <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                        <span>Upload Photos</span>
+                                        <input id="file-upload" name="file-upload" type="file" class="sr-only" multiple accept="image/*">
+                                    </label>
+                                    <p class="pl-1">or drag & drop</p>
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            </div>
+                        </div>
+                        <div id="previewContainer" class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+                        <p id="fileError" class="mt-2 text-sm text-red-600 hidden"></p>
+                    </div>
+                </div>
+                <div class="px-6 py-6">
+                    <button id="calcGradeBtn" type="button"
+                    class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Calculate Grade
+                </button>
+                <p id="gradeResult" class="mt-2 text-sm text-indigo-700"></p>
+            </div>
+                
+
+
+                <!-- Description -->
+                <div class="px-6 py-6">
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-900">Product Description</h3>
+                        <p class="mt-1 text-sm text-gray-500">Describe the condition, size, and any special notes in detail.</p>
+                    </div>
+                    <div class="mt-6">
+                        <textarea id="description" name="description" rows="6" required
+                            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md p-3"
+                            placeholder="e.g. Size: M, Color: Ivory, Condition: Clean. Slight stretching at the neckline."></textarea>
+                        <div class="mt-2 flex justify-between">
+                            <p class="text-xs text-gray-500">Please write at least 20 characters.</p>
+                            <p id="charCount" class="text-xs text-gray-500">0/1000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Register Button -->
+                <div class="px-6 py-3 bg-gray-50 text-right">
+                    <button type="submit"
+                        class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Register Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer (한글 주석 유지) -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Marketplace</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">T-Shirts</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Shirts/Blouses</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Knit/Sweater</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Outerwear/Jacket</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Service</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Quality Check</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Sell</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Chat</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Announcements</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Shipping/Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Brand Guide</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2023 ReWear. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.sm\\:hidden button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', function() {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if(isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('block');
+                } else {
+                    mobileMenu.classList.remove('block');
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+            // Description char count
+            const description = document.getElementById('description');
+            const charCount = document.getElementById('charCount');
+            description.addEventListener('input', function() {
+                const currentLength = this.value.length;
+                charCount.textContent = `${currentLength}/1000`;
+                if(currentLength > 1000) {
+                    this.value = this.value.substring(0, 1000);
+                    charCount.textContent = '1000/1000';
+                }
+            });
+            // Image upload handling
+            const fileInput = document.getElementById('file-upload');
+            const previewContainer = document.getElementById('previewContainer');
+            const dropzone = document.getElementById('dropzone');
+            const fileError = document.getElementById('fileError');
+            const maxFiles = 10;
+            const maxFileSize = 10 * 1024 * 1024; // 10MB
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            window.previewFiles = [];
+            // Drag & drop events
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, preventDefaults, false);
+            });
+            function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropzone.addEventListener(eventName, highlight, false);
+            });
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, unhighlight, false);
+            });
+            function highlight() { dropzone.classList.add('dropzone-active'); }
+            function unhighlight() { dropzone.classList.remove('dropzone-active'); }
+            dropzone.addEventListener('drop', handleDrop, false);
+            function handleDrop(e) { const dt = e.dataTransfer; const files = dt.files; handleFiles(files); }
+            fileInput.addEventListener('change', function() { handleFiles(this.files); });
+            function handleFiles(files) {
+                fileError.classList.add('hidden');
+                if(window.previewFiles.length + files.length > maxFiles) {
+                    showError(`You can upload up to ${maxFiles} images.`);
+                    return;
+                }
+                Array.from(files).forEach(file => {
+                    if(!allowedTypes.includes(file.type)) {
+                        showError('Only JPEG, PNG, and GIF images are allowed.');
+                        return;
+                    }
+                    if(file.size > maxFileSize) {
+                        showError('Only images up to 10MB are allowed.');
+                        return;
+                    }
+                    previewFile(file);
+                });
+            }
+            function previewFile(file) {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onloadend = function() {
+                    const preview = document.createElement('div');
+                    preview.className = 'relative group';
+                    const img = document.createElement('img');
+                    img.src = reader.result;
+                    img.className = 'w-full h-40 object-cover rounded-md';
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.type = 'button';
+                    deleteBtn.className = 'absolute top-2 right-2 inline-flex items-center p-1 bg-red-500 rounded-full text-white opacity-0 group-hover:opacity-100 focus:outline-none';
+                    deleteBtn.innerHTML = '<i class="fas fa-times text-xs"></i>';
+                    deleteBtn.addEventListener('click', function() {
+                        const index = window.previewFiles.findIndex(f => f.name === file.name);
+                        if(index > -1) { window.previewFiles.splice(index, 1); }
+                        previewContainer.removeChild(preview);
+                    });
+                    preview.appendChild(img);
+                    preview.appendChild(deleteBtn);
+                    previewContainer.appendChild(preview);
+                    window.previewFiles.push(file);
+                };
+            }
+            function showError(message) {
+                fileError.textContent = message;
+                fileError.classList.remove('hidden');
+            }
+            window.showError = showError;
+        });
+
+    </script>
+    <script type="module">
+    import { getFirestore, collection, addDoc, serverTimestamp, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { auth, signOut, onAuthStateChanged } from "./js/firebase.js";
+
+    // 버튼 그룹 DOM 가져오기
+    const navAuth = document.getElementById("nav-auth-buttons");
+    const navUser = document.getElementById("nav-user-buttons");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    // 로그인 상태 감지해서 토글
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // 로그인 상태
+            if (navAuth) navAuth.style.display = "none";
+            if (navUser) navUser.style.display = "flex";
+        } else {
+            // 로그아웃 상태
+            if (navUser) navUser.style.display = "none";
+            if (navAuth) navAuth.style.display = "flex";
+        }
+    });
+
+    // 로그아웃 버튼 기능
+    if (logoutBtn) {
+        logoutBtn.onclick = async () => {
+            await signOut(auth);
+            window.location.href = "index.html";
+        };
+    }
+
+    // 네비게이션바 (생략: 기존 코드 유지)
+
+    const db = getFirestore();
+    const productForm = document.getElementById('productForm');
+
+    // grade 값을 관리할 변수
+    let detectedGrade = null;
+
+    document.getElementById('calcGradeBtn').addEventListener('click', async function () {
+        if (!window.previewFiles || window.previewFiles.length === 0) {
+            alert("Please upload an image first.");
+            return;
+        }
+        const gradeResult = document.getElementById('gradeResult');
+        gradeResult.textContent = "Calculating grade...";
+        // 첫 번째 파일만 사용
+        const firstFile = window.previewFiles[0];
+
+        const formData = new FormData();
+        formData.append('file', firstFile);
+
+        try {
+            const res_clothcheck = await fetch('http://175.214.92.162:811/isClothOrNot/', {
+                method: 'POST',
+                body: formData
+            });
+            const data_clothcheck = await res_clothcheck.json();
+            console.log(data_clothcheck.prediction);
+            if(data_clothcheck.prediction == "True"){
+                const res = await fetch('http://175.214.92.162:811/upload-image/', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await res.json();
+            // 서버 응답: data.predict가 1~5
+            const gradeNum = parseInt(data.predict);
+            let gradeText = "";
+            switch (gradeNum) {
+                case 1: gradeText = "F"; alert("This garment is rated F. Are you sure you want to sell it? You can dispose of this garment in our used clothing collection bin."); break;
+                case 2: gradeText = "C"; break;
+                case 3: gradeText = "B"; break;
+                case 4: gradeText = "A"; break;
+                case 5: gradeText = "S"; break;
+                default: gradeText = "Unknown";
+            }
+            detectedGrade = gradeText;
+            gradeResult.textContent = `Calculated grade: ${gradeText}`;
+            }else{
+                detectedGrade = "NotCloth"
+                gradeResult.textContent = `The picture doesn't seem to be clothes.`;
+            }
+            
+        } catch (err) {
+            gradeResult.textContent = "Error occurred: " + err;
+        }
+    });
+
+    productForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        // 이미지/설명 유효성 검사
+        if (window.previewFiles.length === 0) {
+            window.showError('Please upload at least one product image.');
+            return;
+        }
+        const description = document.getElementById('description').value;
+        if (description.length < 20) {
+            alert('Please enter a description of at least 20 characters.');
+            return;
+        }
+        // grade 검증
+        if (!detectedGrade) {
+            alert('Please calculate the product grade first.');
+            return;
+        }
+        // 폼 데이터
+        const title = document.getElementById('productName').value;
+        const category = document.getElementById('category').value;
+        const brand = document.getElementById('brand').value;
+        const price = Number(document.getElementById('price').value);
+        const location = document.getElementById('location').value;
+        // 로그인 유저
+        const user = auth.currentUser;
+        if (!user) {
+            alert('Login is required.');
+            window.location.href = 'login.html';
+            return;
+        }
+        let country = "UNKNOWN";
+        try {
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                country = userDoc.data().country || "UNKNOWN";
+            }
+        } catch (e) {}
+        // 이미지 base64
+        const images = await Promise.all(window.previewFiles.map(f => fileToDataUrl(f)));
+        try {
+            if(detectedGrade == "NotCloth"){
+                alert("Please upload a new picture of your clothes")
+            }else{
+            await addDoc(collection(db, "products"), {
+                title,
+                category,
+                brand,
+                price,
+                grade: detectedGrade, // 계산된 등급
+                location,
+                images,
+                description,
+                sellerId: user.uid,
+                createdAt: serverTimestamp(),
+                country,
+                status: "on sale",
+                likesCount: 0,
+                likedUsers: {},
+            });
+            alert('Product successfully registered!');
+            window.location.href = 'index.html';
+            }
+        } catch (err) {
+            alert('Failed to register product: ' + err.message);
+        }
+    });
+    function fileToDataUrl(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = e => resolve(e.target.result);
+            reader.onerror = e => reject(e);
+            reader.readAsDataURL(file);
+        });
+    }
+    </script>
+
+</body>
+</html>

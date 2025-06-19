@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReWear - Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .category-dropdown:hover .category-menu { display: block; }
+        .category-dropdown:focus-within .category-menu { display: block; }
+        .gradient-bg { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .item-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);}
+        .nav-link:hover { color: #4f46e5; }
+        .password-strength { height: 4px; transition: all 0.3s; }
+        .strength-weak { background-color: #ef4444; width: 25%; }
+        .strength-medium { background-color: #f59e0b; width: 50%; }
+        .strength-strong { background-color: #10b981; width: 75%; }
+        .strength-very-strong { background-color: #3b82f6; width: 100%; }
+        .term-item:hover { background-color: #f3f4f6; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-tshirt text-indigo-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-indigo-600">ReWear</span>
+                    </a>
+                    <!-- Primary Nav -->
+                    <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
+                        <div class="category-dropdown relative">
+                            <button class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium hover:border-indigo-500">
+                                Marketplace
+                                <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div class="category-menu absolute left-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-10">
+                            <div class="py-1 grid grid-cols-2 gap-2 p-3">
+                                <a href="market.html?category=T-Shirts" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-tshirt mr-2 text-indigo-400"></i> T-Shirts
+                                </a>
+                                <a href="market.html?category=Shirts/Blouses" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-shirt mr-2 text-purple-400"></i> Shirts<br>Blouses
+                                </a>
+                                <a href="market.html?category=Knit/Sweater" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-snowflake mr-2 text-blue-400"></i> Knit<br>Sweater
+                                </a>
+                                <a href="market.html?category=Outerwear/Jacket" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-user-tie mr-2 text-green-400"></i> Outerwear<br>Jacket
+                                </a>
+                                <a href="market.html?category=Pants/Denim" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-user-astronaut mr-2 text-yellow-400"></i> Pants<br>Denim
+                                </a>
+                                <a href="market.html?category=Skirts/Dresses" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-female mr-2 text-red-400"></i> Skirts<br>Dresses
+                                </a>
+                                <a href="market.html?category=Underwear/Socks" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-socks mr-2 text-pink-400"></i> Underwear<br>Socks
+                                </a>
+                                <a href="market.html?category=Accessories" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded flex items-center">
+                                <i class="fas fa-hat-cowboy mr-2 text-gray-400"></i> Accessories
+                                </a>
+                            </div>
+                            </div>
+
+                        </div>
+                        <a href="sell.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Sell
+                        </a>
+                        <a href="chat.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Chat
+                        </a>
+                        <a href="tryon.html" class="nav-link text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium hover:border-indigo-500">
+                            Virtual Try On
+                        </a>
+                    </div>
+                </div>
+                <!-- Right Nav -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center" id="nav-auth-buttons">
+                    <button class="text-gray-700 px-3 py-1 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50">
+                        <a href="login.html">Login</a>
+                    </button>
+                    <button class="ml-3 bg-indigo-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-indigo-700">
+                        <a href="register.html">Sign Up</a>
+                    </button>
+                </div>
+                <!-- 추가: 로그인 후 표시될 내 정보/로그아웃 버튼 -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center" id="nav-user-buttons" style="display:none;">
+                    <button class="bg-indigo-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-indigo-700">
+                        <a href="mypage.html">My Page</a>
+                    </button>
+                    <button id="logout-btn" class="ml-3 text-gray-700 px-3 py-1 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50">
+                        Logout
+                    </button>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 bg-indigo-50">Marketplace</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Quality Check</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Sell</a>
+                <a href="#" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Chat</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <div class="mt-3 space-y-1">
+                    <button class="block w-full px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Login</button>
+                    <button class="block w-full px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Register) -->
+    <div class="gradient-bg">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+                    <span class="block">ReWear Sign Up</span>
+                </h1>
+                <p class="mt-3 max-w-md mx-auto text-base text-gray-700 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                    Welcome to the platform for sustainable secondhand fashion. Sign up now and get a 10% discount coupon for your first deal!
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Register Form Section -->
+    <div class="py-12 bg-white">
+        <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="p-6 sm:p-10">
+                    <div class="text-center">
+                        <h2 class="text-2xl font-bold text-gray-900">Create Account</h2>
+                        <p class="mt-2 text-sm text-gray-600">Already have an account? 
+                            <a href="login.html" class="font-medium text-indigo-600 hover:text-indigo-500">Login</a>
+                        </p>
+                    </div>
+                    <form class="mt-8 space-y-6" id="registerForm">
+                        <div class="rounded-md shadow-sm space-y-4">
+                            <!-- Email Input -->
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                <div class="mt-1 relative rounded-md shadow-sm">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-envelope text-gray-400"></i>
+                                    </div>
+                                    <input id="email" name="email" type="email" autocomplete="email" required 
+                                           class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                           placeholder="example@rewear.com">
+                                </div>
+                                <p class="mt-1 text-xs text-gray-500" id="email-error"></p>
+                            </div>
+                            <!-- Name Input -->
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                <div class="mt-1 relative rounded-md shadow-sm">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-user text-gray-400"></i>
+                                    </div>
+                                    <input id="name" name="name" type="text" autocomplete="name" required 
+                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        placeholder="John Doe">
+                                </div>
+                            </div>
+                            <!-- ID Input -->
+                            <div>
+                                <label for="id" class="block text-sm font-medium text-gray-700">ID</label>
+                                <div class="mt-1 relative rounded-md shadow-sm">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-user-tag text-gray-400"></i>
+                                    </div>
+                                    <input id="id" name="id" type="text" autocomplete="id" required 
+                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        placeholder="ID (2-10 chars)">
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                        <button type="button" class="text-xs bg-gray-100 px-2 py-1 rounded text-gray-600 hover:bg-gray-200" id="checkid">
+                                            Check
+                                        </button>
+                                    </div>
+                                </div>
+                                <p class="mt-1 text-xs text-gray-500" id="id-error"></p>
+                            </div>
+                            <!-- Password Input -->
+                            <div>
+                                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                                <div class="mt-1 relative rounded-md shadow-sm">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-lock text-gray-400"></i>
+                                    </div>
+                                    <input id="password" name="password" type="password" autocomplete="new-password" required 
+                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        placeholder="Password (min. 8 chars)">
+                                </div>
+                                <div class="mt-2 flex items-center">
+                                    <div class="w-full bg-gray-200 rounded-full h-1.5">
+                                        <div class="password-strength h-1 rounded-full" id="password-strength"></div>
+                                    </div>
+                                    <span class="ml-2 text-xs text-gray-500" id="password-strength-text">Strength</span>
+                                </div>
+                            </div>
+                            <!-- Confirm Password Input -->
+                            <div>
+                                <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                                <div class="mt-1 relative rounded-md shadow-sm">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-lock text-gray-400"></i>
+                                    </div>
+                                    <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required 
+                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        placeholder="Enter your password again">
+                                </div>
+                                <p class="mt-1 text-xs text-gray-500" id="confirm-password-error"></p>
+                            </div>
+                            <!-- Country Input -->
+                            <div>
+                                <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+                                <div class="mt-1 relative rounded-md shadow-sm">
+                                    <select id="country" name="country" required
+                                        class="block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        <option value="">Select your country</option>
+                                        <option value="US">United States</option>
+                                        <option value="IN">India</option>
+                                        <option value="GB">United Kingdom</option>
+                                        <option value="DE">Germany</option>
+                                        <option value="FR">France</option>
+                                        <option value="BN">Brunei Darussalam</option>
+                                        <option value="KH">Cambodia</option>
+                                        <option value="CN">China</option>
+                                        <option value="ID">Indonesia</option>
+                                        <option value="JP">Japan</option>
+                                        <option value="KR">South Korea</option>
+                                        <option value="LA">Lao PDR</option>
+                                        <option value="MY">Malaysia</option>
+                                        <option value="MM">Myanmar</option>
+                                        <option value="PH">Philippines</option>
+                                        <option value="SG">Singapore</option>
+                                        <option value="TH">Thailand</option>
+                                        <option value="TL">Timor-Leste</option>
+                                        <option value="VN">Vietnam</option>
+                                        <option value="Other">Other</option>
+                                        <!-- 국가 추가 가능 -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Terms and Conditions -->
+                            <div class="mt-6">
+                                <h3 class="text-sm font-medium text-gray-700 mb-2">Agree to Terms</h3>
+                                <div class="bg-gray-50 p-3 rounded-md">
+                                    <div class="flex items-start">
+                                        <div class="flex items-center h-5">
+                                            <input id="all-terms" name="all-terms" type="checkbox" 
+                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                        </div>
+                                        <div class="ml-3 text-sm">
+                                            <label for="all-terms" class="font-medium text-gray-700">Agree to All</label>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 space-y-3">
+                                        <div class="term-item p-3 rounded-md cursor-pointer">
+                                            <div class="flex items-start">
+                                                <div class="flex items-center h-5">
+                                                    <input id="terms-service" name="terms-service" type="checkbox" required
+                                                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                                </div>
+                                                <div class="ml-3 text-sm">
+                                                    <label for="terms-service" class="font-medium text-gray-700">Service Terms Agreement (Required)</label>
+                                                    <p class="text-xs text-gray-500 mt-1">Required to use the ReWear service.</p>
+                                                </div>
+                                                <a href="#" class="ml-auto text-xs text-indigo-600 hover:underline">View</a>
+                                            </div>
+                                        </div>
+                                        <div class="term-item p-3 rounded-md cursor-pointer">
+                                            <div class="flex items-start">
+                                                <div class="flex items-center h-5">
+                                                    <input id="terms-privacy" name="terms-privacy" type="checkbox" required
+                                                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                                </div>
+                                                <div class="ml-3 text-sm">
+                                                    <label for="terms-privacy" class="font-medium text-gray-700">Personal Information Collection and Use (Required)</label>
+                                                    <p class="text-xs text-gray-500 mt-1">Required for service provision.</p>
+                                                </div>
+                                                <a href="#" class="ml-auto text-xs text-indigo-600 hover:underline">View</a>
+                                            </div>
+                                        </div>
+                                        <div class="term-item p-3 rounded-md cursor-pointer">
+                                            <div class="flex items-start">
+                                                <div class="flex items-center h-5">
+                                                    <input id="terms-marketing" name="terms-marketing" type="checkbox"
+                                                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                                </div>
+                                                <div class="ml-3 text-sm">
+                                                    <label for="terms-marketing" class="font-medium text-gray-700">Marketing Information Consent (Optional)</label>
+                                                    <p class="text-xs text-gray-500 mt-1">Receive event and discount info via email/SMS.</p>
+                                                </div>
+                                                <a href="#" class="ml-auto text-xs text-indigo-600 hover:underline">View</a>
+                                            </div>
+                                        </div>
+                                        <div class="term-item p-3 rounded-md cursor-pointer">
+                                            <div class="flex items-start">
+                                                <div class="flex items-center h-5">
+                                                    <input id="terms-age" name="terms-age" type="checkbox" required
+                                                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                                </div>
+                                                <div class="ml-3 text-sm">
+                                                    <label for="terms-age" class="font-medium text-gray-700">Age 14 or Older (Required)</label>
+                                                    <p class="text-xs text-gray-500 mt-1">Secondhand trading is available from age 14.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Sign Up
+                            </button>
+                        </div>
+                    </form>
+                    <div class="mt-6">
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-white text-gray-500">
+                                    Sign up with Google
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-6 grid grid-cols-1 gap-1">
+                            <div>
+                                <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    <i class="fab fa-google text-red-500"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Country select modal for Google login -->
+                    <div id="country-modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+                    <div class="bg-white rounded-lg shadow-lg p-6 w-80">
+                        <h2 class="text-lg font-bold mb-4">Select your country</h2>
+                        <select id="country-modal-select" class="w-full p-2 border rounded">
+                            <option value="">Select your country</option>
+                            <option value="US">United States</option>
+                            <option value="IN">India</option>
+                            <option value="GB">United Kingdom</option>
+                            <option value="DE">Germany</option>
+                            <option value="FR">France</option>
+                            <option value="BN">Brunei Darussalam</option>
+                            <option value="KH">Cambodia</option>
+                            <option value="CN">China</option>
+                            <option value="ID">Indonesia</option>
+                            <option value="JP">Japan</option>
+                            <option value="KR">South Korea</option>
+                            <option value="LA">Lao PDR</option>
+                            <option value="MY">Malaysia</option>
+                            <option value="MM">Myanmar</option>
+                            <option value="PH">Philippines</option>
+                            <option value="SG">Singapore</option>
+                            <option value="TH">Thailand</option>
+                            <option value="TL">Timor-Leste</option>
+                            <option value="VN">Vietnam</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <button id="country-modal-ok" class="mt-4 w-full bg-indigo-600 text-white rounded p-2 hover:bg-indigo-700">OK</button>
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer (한국어 주석 및 메뉴명 유지 가능) -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Marketplace</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">T-Shirts</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Shirts/Blouses</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Knit/Sweater</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Outerwear/Jacket</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Service</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Quality Check</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Sell</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Chat</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Terms</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Notices</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Shipping/Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Brand Guide</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2023 ReWear. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.querySelector('.sm\\:hidden button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', function() {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if(isHidden) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('block');
+            } else {
+                mobileMenu.classList.remove('block');
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Password strength indicator
+        const passwordInput = document.getElementById('password');
+        const passwordStrength = document.getElementById('password-strength');
+        const passwordStrengthText = document.getElementById('password-strength-text');
+
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            let strength = 0;
+
+            // Length >= 8
+            if (password.length >= 8) strength += 1;
+
+            // Contains lowercase letter
+            if (/[a-z]/.test(password)) strength += 1;
+
+            // Contains uppercase letter
+            if (/[A-Z]/.test(password)) strength += 1;
+
+            // Contains number
+            if (/[0-9]/.test(password)) strength += 1;
+
+            // Contains special character
+            if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+
+            // Update UI
+            passwordStrength.className = 'password-strength h-1 rounded-full';
+
+            if (strength <= 1) {
+                passwordStrength.classList.add('strength-weak');
+                passwordStrengthText.textContent = 'Weak';
+                passwordStrengthText.className = 'ml-2 text-xs text-red-500';
+            } else if (strength <= 3) {
+                passwordStrength.classList.add('strength-medium');
+                passwordStrengthText.textContent = 'Medium';
+                passwordStrengthText.className = 'ml-2 text-xs text-yellow-500';
+            } else if (strength <= 4) {
+                passwordStrength.classList.add('strength-strong');
+                passwordStrengthText.textContent = 'Strong';
+                passwordStrengthText.className = 'ml-2 text-xs text-green-500';
+            } else {
+                passwordStrength.classList.add('strength-very-strong');
+                passwordStrengthText.textContent = 'Very strong';
+                passwordStrengthText.className = 'ml-2 text-xs text-blue-500';
+            }
+        });
+
+        // Terms and conditions all agree
+        const allTermsCheckbox = document.getElementById('all-terms');
+        const termCheckboxes = [
+            document.getElementById('terms-service'),
+            document.getElementById('terms-privacy'),
+            document.getElementById('terms-marketing'),
+            document.getElementById('terms-age')
+        ];
+
+        allTermsCheckbox.addEventListener('change', function() {
+            termCheckboxes.forEach(checkbox => {
+                checkbox.checked = allTermsCheckbox.checked;
+            });
+        });
+
+        termCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                allTermsCheckbox.checked = termCheckboxes.every(c => c.checked);
+            });
+        });
+
+        // id validation
+        const checkidBtn = document.getElementById('checkid');
+        const idInput = document.getElementById('id');
+        const idError = document.getElementById('id-error');
+
+        checkidBtn.addEventListener('click', function() {
+            const id = idInput.value.trim();
+
+            if (!id) {
+                idError.textContent = 'Please enter your ID.';
+                idError.className = 'mt-1 text-xs text-red-500';
+                return;
+            }
+
+            if (id.length < 2 || id.length > 10) {
+                idError.textContent = 'ID must be between 2 and 10 characters.';
+                idError.className = 'mt-1 text-xs text-red-500';
+                return;
+            }
+
+            // Simulate API call with setTimeout
+            idError.textContent = 'Checking...';
+            idError.className = 'mt-1 text-xs text-gray-500';
+
+            setTimeout(() => {
+                // Simulate successful check
+                idError.textContent = 'This ID is available.';
+                idError.className = 'mt-1 text-xs text-green-500';
+            }, 1000);
+        });
+
+        // Password confirmation check
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const confirmPasswordError = document.getElementById('confirm-password-error');
+
+        confirmPasswordInput.addEventListener('input', function() {
+            if (confirmPasswordInput.value !== passwordInput.value) {
+                confirmPasswordError.textContent = 'Passwords do not match.';
+                confirmPasswordError.className = 'mt-1 text-xs text-red-500';
+            } else {
+                confirmPasswordError.textContent = 'Passwords match.';
+                confirmPasswordError.className = 'mt-1 text-xs text-green-500';
+            }
+        });
+
+        // (생략: 핸드폰 인증/주소 검색 등. 실제 사용 안하면 무시)
+
+        // Form submission (이벤트는 module script에서 처리)
+    });
+</script>
+
+<script type="module">
+import { auth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from './js/firebase.js';
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const db = getFirestore();
+const navAuth = document.getElementById("nav-auth-buttons");
+const navUser = document.getElementById("nav-user-buttons");
+const logoutBtn = document.getElementById("logout-btn");
+
+// Navbar login toggle
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        if (navAuth) navAuth.style.display = "none";
+        if (navUser) navUser.style.display = "flex";
+    } else {
+        if (navUser) navUser.style.display = "none";
+        if (navAuth) navAuth.style.display = "flex";
+    }
+});
+if (logoutBtn) {
+    logoutBtn.onclick = async () => {
+        await signOut(auth);
+        window.location.href = "index.html";
+    };
+}
+
+// 일반 회원가입
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const pw = document.getElementById("password").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const id = document.getElementById("id").value.trim();
+    const country = document.getElementById("country").value;
+
+    // 필수 입력 확인
+    if (!country) {
+        alert("Please select your country.");
+        document.getElementById("country").focus();
+        return;
+    }
+
+    try {
+        // 1. Auth create user
+        const userCred = await createUserWithEmailAndPassword(auth, email, pw);
+        const user = userCred.user;
+
+        // 2. Save user info to Firestore
+        await setDoc(doc(db, "users", user.uid), {
+            email: user.email,
+            name: name,
+            id: id,
+            uid: user.uid,
+            country: country,
+            favorites: 0,
+            createdAt: serverTimestamp(),
+            profilePicture: ""
+        });
+
+        alert("Registration completed!");
+        window.location.href = "index.html";
+    } catch (err) {
+        alert("Registration failed: " + err.message);
+    }
+});
+
+// Google signup/login
+document.querySelector(".fab.fa-google").closest("a").addEventListener("click", async (e) => {
+    e.preventDefault();
+    try {
+        const result = await signInWithPopup(auth, new GoogleAuthProvider());
+        const user = result.user;
+
+        // Get user doc
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        let country = "";
+
+        // Country select modal (instead of prompt!)
+        async function selectCountryModal() {
+            return new Promise((resolve) => {
+                const modal = document.getElementById("country-modal");
+                const select = document.getElementById("country-modal-select");
+                const okBtn = document.getElementById("country-modal-ok");
+                select.value = "";
+                modal.classList.remove("hidden");
+                okBtn.onclick = () => {
+                    if (!select.value || select.value.length !== 2) {
+                        alert("Please select a valid country.");
+                        return;
+                    }
+                    modal.classList.add("hidden");
+                    resolve(select.value);
+                };
+            });
+        }
+
+        if (!userDoc.exists() || !userDoc.data().country) {
+            country = await selectCountryModal();
+        } else {
+            country = userDoc.data().country;
+        }
+
+        if (!userDoc.exists()) {
+            await setDoc(doc(db, "users", user.uid), {
+                email: user.email,
+                name: user.displayName || "",
+                id: "",
+                uid: user.uid,
+                country: country,
+                favorites: 0,
+                createdAt: serverTimestamp(),
+                profilePicture: ""
+            });
+        } else if (!userDoc.data().country) {
+            await setDoc(doc(db, "users", user.uid), {
+                ...userDoc.data(),
+                country: country
+            });
+        }
+        alert("Google login/sign up success!");
+        window.location.href = "index.html";
+    } catch (err) {
+        alert("Google login failed: " + err.message);
+    }
+});
+</script>
+
+
+
+        
+</body>
+</html>
