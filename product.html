@@ -232,7 +232,7 @@
                                         </tr>
                                         <tr>
                                             <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">Location</td>
-                                            <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Gangnam-gu, Seoul</td>
+                                            <td id="location" class="px-4 py-4 whitespace-nowrap text-sm text-gray-900">Gangnam-gu, Seoul</td>
                                         </tr>
                                         <tr>
                                             <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">Delivery Method</td>
@@ -404,6 +404,7 @@
         document.getElementById('product-brand').textContent = product.brand ?? "-";
         document.getElementById('product-price').textContent = (product.price ?? 0).toLocaleString();
         document.getElementById('product-description').innerHTML = product.description ?? "";
+        document.getElementById('location').textContent = product.location ?? "-";
 
         // grade (product grade)
         const gradeElement = document.getElementById('product-grade');

@@ -432,7 +432,7 @@ document.getElementById('tryon-form').addEventListener('submit', async function 
     formData.append('avatar', avatarFile);
 
     try {
-        const res = await fetch('https://175.214.92.162:811/try-on/', {
+        const res = await fetch('https://acb4-175-214-92-162.ngrok-free.app/try-on/', {
             method: 'POST',
             body: formData
         });
@@ -440,7 +440,7 @@ document.getElementById('tryon-form').addEventListener('submit', async function 
         const data = await res.json();
         console.log(data);
         if (data && data.result_url) {
-            const imageUrl = `https://175.214.92.162:811${data.result_url}`;
+            const imageUrl = `https://acb4-175-214-92-162.ngrok-free.app${data.result_url}`;
             resultBox.innerHTML = `
                 <div class="flex justify-center">
                     <img src="${imageUrl}" class="max-w-xs max-h-96 rounded shadow object-contain mx-auto" alt="Virtual Try-On Result">

@@ -487,14 +487,14 @@
         formData.append('file', firstFile);
 
         try {
-            const res_clothcheck = await fetch('https://175.214.92.162:811/isClothOrNot/', {
+            const res_clothcheck = await fetch('https://acb4-175-214-92-162.ngrok-free.app/isClothOrNot/', {
                 method: 'POST',
                 body: formData
             });
             const data_clothcheck = await res_clothcheck.json();
             console.log(data_clothcheck.prediction);
             if(data_clothcheck.prediction == "True"){
-                const res = await fetch('https://175.214.92.162:811/upload-image/', {
+                const res = await fetch('https://acb4-175-214-92-162.ngrok-free.app/upload-image/', {
                 method: 'POST',
                 body: formData
             });
