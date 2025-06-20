@@ -113,8 +113,8 @@
         <!-- Mobile menu -->
         <div class="sm:hidden hidden" id="mobile-menu">
             <div class="pt-2 pb-3 space-y-1">
-                <a href="market.html" class="block pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 bg-indigo-50">Marketplace</a>
-                <a href="sell.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Sell</a>
+                <a href="market.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 bg-indigo-50">Marketplace</a>
+                <a href="sell.html" class="block pl-3 pr-4 py-2 border-l-4 border-indigo-500 text-base font-medium text-indigo-700 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Sell</a>
                 <a href="chat.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Chat</a>
                 <a href="tryon.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">Virtual Try On</a>
             </div>
@@ -432,7 +432,7 @@ document.getElementById('tryon-form').addEventListener('submit', async function 
     formData.append('avatar', avatarFile);
 
     try {
-        const res = await fetch('https://acb4-175-214-92-162.ngrok-free.app/try-on/', {
+        const res = await fetch('https://29c3-175-214-92-162.ngrok-free.app/try-on/', {
             method: 'POST',
             body: formData
         });
@@ -440,7 +440,7 @@ document.getElementById('tryon-form').addEventListener('submit', async function 
         const data = await res.json();
         console.log(data);
         if (data && data.result_url) {
-            const imageUrl = `https://acb4-175-214-92-162.ngrok-free.app${data.result_url}`;
+            const imageUrl = `https://29c3-175-214-92-162.ngrok-free.app${data.result_url}`;
             resultBox.innerHTML = `
                 <div class="flex justify-center">
                     <img src="${imageUrl}" class="max-w-xs max-h-96 rounded shadow object-contain mx-auto" alt="Virtual Try-On Result">
