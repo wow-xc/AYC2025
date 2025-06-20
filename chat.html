@@ -339,17 +339,21 @@
         // 로그인 상태 감지해서 토글
     onAuthStateChanged(auth, async (user) => {
         if (user) {
+            currentUser = user;
             // 로그인 상태
             if (navAuth) navAuth.style.display = "none";
             if (navUser) navUser.style.display = "flex";
             if (navUserName) {
-            // 유저의 name 가져오기
-            const userDoc = await getDoc(doc(db, "users", user.uid));
+                const userDoc = await getDoc(doc(db, "users", user.uid));
             if (userDoc.exists()) {
                 navUserName.textContent = userDoc.data().name || user.email || "User";
             } else {
                 navUserName.textContent = user.email || "User";
             }
+        }
+        renderChatList();
+        if (currentChatId) {
+            openChatRoom(currentChatId);
         }
         } else {
             // 로그아웃 상태
