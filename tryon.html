@@ -262,60 +262,6 @@
         </div>
     </footer>
 
-    <!-- ... 위에 기존 코드 유지 ... -->
-<!-- Clothing Image Upload -->
-<div class="px-6 py-6">
-    <div>
-        <h3 class="text-lg font-medium text-gray-900">Clothing Image</h3>
-        <p class="mt-1 text-sm text-gray-500">Upload the clothing image. (1 image only)</p>
-    </div>
-    <div class="mt-6">
-        <div id="clothing-dropzone" class="dropzone flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-            <div id="clothing-initial" class="space-y-1 text-center ">
-                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <div class="flex text-sm text-gray-600 justify-center">
-                    <label for="clothing-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500">
-                        <span>Upload Photo</span>
-                        <input id="clothing-upload" name="clothing" type="file" class="sr-only" accept="image/*">
-                    </label>
-                    <p class="pl-1">or drag & drop</p>
-                </div>
-                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-            </div>
-            <div id="clothing-preview" class="w-full flex justify-center items-center"></div>
-        </div>
-        <p id="clothing-error" class="mt-2 text-sm text-red-600 hidden"></p>
-    </div>
-</div>
-<!-- Avatar Image Upload (아바타도 동일하게 구조 적용) -->
-<div class="px-6 py-6">
-    <div>
-        <h3 class="text-lg font-medium text-gray-900">Avatar Image</h3>
-        <p class="mt-1 text-sm text-gray-500">Upload the avatar image. (1 image only)</p>
-    </div>
-    <div class="mt-6">
-        <div id="avatar-dropzone" class="dropzone flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md ">
-            <div id="avatar-initial" class="space-y-1 text-center">
-                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <div class="flex text-sm text-gray-600 justify-center">
-                    <label for="avatar-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500">
-                        <span>Upload Photo</span>
-                        <input id="avatar-upload" name="avatar" type="file" class="sr-only" accept="image/*">
-                    </label>
-                    <p class="pl-1">or drag & drop</p>
-                </div>
-                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-            </div>
-            <div id="avatar-preview" class="w-full flex justify-center items-center"></div>
-        </div>
-        <p id="avatar-error" class="mt-2 text-sm text-red-600 hidden"></p>
-    </div>
-</div>
-
 <!-- script 부분 -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -417,24 +363,22 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-    <script type="module">
-    import { getFirestore, collection, addDoc, serverTimestamp, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-    import { auth, signOut, onAuthStateChanged } from "./js/firebase.js";
-    // 버튼 그룹 DOM 가져오기
-    const navAuth = document.getElementById("nav-auth-buttons");
-    const navUser = document.getElementById("nav-user-buttons");
-    const navUserName = document.getElementById("nav-user-name");
-    const logoutBtn = document.getElementById("logout-btn");
-    const db = getFirestore();
+<script type="module">
+import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { auth, signOut, onAuthStateChanged } from "./js/firebase.js";
 
-    // 로그인 상태 감지해서 토글
-    onAuthStateChanged(auth, async (user) => {
-        if (user) {
-            // 로그인 상태
-            if (navAuth) navAuth.style.display = "none";
-            if (navUser) navUser.style.display = "flex";
-            if (navUserName) {
-            // 유저의 name 가져오기
+const navAuth = document.getElementById("nav-auth-buttons");
+const navUser = document.getElementById("nav-user-buttons");
+const navUserName = document.getElementById("nav-user-name");
+const logoutBtn = document.getElementById("logout-btn");
+const db = getFirestore();
+
+// 네비게이션 유저 이름 토글
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        if (navAuth) navAuth.style.display = "none";
+        if (navUser) navUser.style.display = "flex";
+        if (navUserName) {
             const userDoc = await getDoc(doc(db, "users", user.uid));
             if (userDoc.exists()) {
                 navUserName.textContent = userDoc.data().name || user.email || "User";
@@ -442,21 +386,77 @@ document.addEventListener('DOMContentLoaded', function() {
                 navUserName.textContent = user.email || "User";
             }
         }
-        } else {
-            // 로그아웃 상태
-            if (navUser) navUser.style.display = "none";
-            if (navAuth) navAuth.style.display = "flex";
-        }
-    });
-
-    // 로그아웃 버튼 기능
-    if (logoutBtn) {
-        logoutBtn.onclick = async () => {
-            await signOut(auth);
-            window.location.href = "index.html";
-        };
+    } else {
+        if (navUser) navUser.style.display = "none";
+        if (navAuth) navAuth.style.display = "flex";
     }
-    </script>
+});
+
+if (logoutBtn) {
+    logoutBtn.onclick = async () => {
+        await signOut(auth);
+        window.location.href = "index.html";
+    };
+}
+
+// ----------- 옷입히기(try-on) 기능 -----------
+function getSingleFile(fileGetterName) {
+    return window[fileGetterName] ? window[fileGetterName]() : null;
+}
+
+document.getElementById('tryon-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const clothingFile = getSingleFile('getClothingFile');
+    const avatarFile = getSingleFile('getAvatarFile');
+    const resultBox = document.getElementById('result');
+    resultBox.innerHTML = '';
+    
+    if (!clothingFile) {
+        resultBox.innerHTML = '<div class="text-red-500">Please upload a clothing image.</div>';
+        return;
+    }
+    if (!avatarFile) {
+        resultBox.innerHTML = '<div class="text-red-500">Please upload an avatar image.</div>';
+        return;
+    }
+
+    resultBox.innerHTML = `
+        <div class="flex justify-center items-center flex-col">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mb-2"></div>
+            <div class="text-gray-600">Processing, please wait...</div>
+        </div>
+    `;
+
+    const formData = new FormData();
+    formData.append('clothing', clothingFile);
+    formData.append('avatar', avatarFile);
+
+    try {
+        const res = await fetch('http://175.214.92.162:811/try-on/', {
+            method: 'POST',
+            body: formData
+        });
+        if (!res.ok) throw new Error('Server Error');
+        const data = await res.json();
+        console.log(data);
+        if (data && data.result_url) {
+            const imageUrl = data.result_url.startsWith('http')
+                ? data.result_url
+                : `http://175.214.92.162:811${data.result_url}`;
+            resultBox.innerHTML = `
+                <div class="flex justify-center">
+                    <img src="${imageUrl}" class="max-w-xs max-h-96 rounded shadow object-contain mx-auto" alt="Virtual Try-On Result">
+                </div>
+            `;
+        } else {
+            throw new Error('No result image received');
+        }
+    } catch (err) {
+        resultBox.innerHTML = `<div class="text-red-500">Failed: ${err.message}</div>`;
+    }
+});
+</script>
+
 
 </body>
 </html>
